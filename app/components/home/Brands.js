@@ -6,13 +6,13 @@ import { LinearGradient } from 'expo-linear-gradient'
 import { TDText } from './../../components'
 import useIsDark from './../../hooks/useIsDark'
 
-export default function Tags({tags, action, onPress}) {
+export default function Tags({brands, action, onPress}) {
 
   const { isDark, setIsDark, colors } = useIsDark()
 
   return (
-    <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-      {tags.map((item, key)=>(
+    <ScrollView showsHorizontalScrollIndicator={false}>
+      {brands.map((item, key)=>(
         <Pressable key={key} onPress={onPress} style={[styles.wrap,{borderColor:isDark?colors.border:'#ededed'}]}>
           <ImageBackground style={styles.img} imageStyle={{ borderRadius: 12}} source={{uri:item.image}} >
             <LinearGradient colors={colorsGru} style={styles.wrapTitle}>

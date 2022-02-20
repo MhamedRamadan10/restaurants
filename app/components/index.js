@@ -5,3 +5,4 @@ export { default as TDButton } from './utils/TDButton'
 export { default as TDHeader } from './utils/TDHeader'
 
 export { default as Tags } from './home/Tags'
+export { default as Brands } from './home/Brands'

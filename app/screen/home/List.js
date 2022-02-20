@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { View, ActivityIndicator } from 'react-native'
-import { TDScreen, TDText, TDInput, Tags } from './../../components'
-import { useScroll, useIsDark } from './../../hooks'
+import { TDScreen, TDText, TDInput, Tags, Brands } from './../../components'
+import { useScroll, useIsDark, useForceUpdate } from './../../hooks'
 import { MaterialCommunityIcons as Icon} from "@expo/vector-icons"
 import DATA from './../../constants/data.json'
 
@@ -12,19 +12,24 @@ export default function List({ navigation }) {
   const [filter, setFilter] = useState('')
 
   const { colors } = useIsDark()
+  const { forceUpdate } = useForceUpdate()
 
 
-  useEffect(()=> handleData(),[])
+  useEffect(()=> handleBrands(),[])
+  useEffect(()=> handleTags(),[brands])
 
-  const handleData = () => {
-    setBrands(DATA.brands)
+  const handleBrands = () => setBrands(DATA.brands)
+
+  const handleTags = () => {
+    let tagArr = []
     brands.map(e=> {
       e.tags.map(tag=> {
-        let tagArr = tags
+        tagArr = tags
         if (!tags.map(e=> e.name).includes(tag.name)) tagArr.push(tag)
-        setTags(tagArr)
       })
     })
+    setTags(tagArr)
+    forceUpdate()
   }
 
   return (
@@ -35,12 +40,14 @@ export default function List({ navigation }) {
         setValue={setFilter}
         placeholder='Search for..'
         style={{width:'90%'}}
-        icon={<Icon name='magnify' style={{color:'#999', fontSize:25, alignSelf:'center'}} />}
+        icon={<Icon name='magnify' style={{color:'#999', fontSize:25, alignSelf:'center', marginLeft:5}} />}
       />
 
-      <Tags tags={tags}/>
+      {tags.length > 0 && <Tags tags={tags}/> }
 
-      {/* <Brands brands={brands}/> */}
+      <TDText t='Resturanst' bold style={{marginHorizontal:5, marginVertical:10}}/>
+
+      <Brands brands={brands}/>
 
     </TDScreen>
   )

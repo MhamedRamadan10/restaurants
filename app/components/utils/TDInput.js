@@ -26,6 +26,6 @@ export default function TDInput({value, numberOfLines=1, setValue, placeholder, 
 }
 
 const styles = StyleSheet.create({
-  wrapper:{ backgroundColor:'#fff', padding:5, borderRadius:12, flexDirection:'row', width:'90%', alignSelf:'center',marginBottom:20},
+  wrapper:{ backgroundColor:'#fff', padding:5, borderRadius:12, flexDirection:'row', width:'95%', alignSelf:'center',marginBottom:20},
   input:{ fontSize:18, padding:10, paddingVertical:4, color:Constants.colors.baseColor,fontFamily:'Tajawal-Medium'},
 })
