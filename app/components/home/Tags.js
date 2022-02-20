@@ -8,12 +8,12 @@ import useIsDark from './../../hooks/useIsDark'
 
 export default function Tags({tags, action, onPress}) {
 
-  const { isDark, setIsDark, colors } = useIsDark()
+  const { colors } = useIsDark()
 
   return (
     <ScrollView horizontal showsHorizontalScrollIndicator={false}>
       {tags.map((item, key)=>(
-        <Pressable key={key} onPress={onPress} style={[styles.wrap,{borderColor:isDark?colors.border:'#ededed'}]}>
+        <Pressable key={key} onPress={onPress} style={[styles.wrap]}>
           <ImageBackground style={styles.img} imageStyle={{ borderRadius: 12}} source={{uri:item.image}} >
             <LinearGradient colors={colorsGru} style={styles.wrapTitle}>
               <TDText t={item.name} style={styles.title} bold/>
@@ -26,7 +26,7 @@ export default function Tags({tags, action, onPress}) {
 }
 
 const styles = StyleSheet.create({
-  wrap:{borderRadius: 12, borderWidth:1, margin:10, marginTop:0, width:Constants.W*.4},
+  wrap:{borderRadius: 12, margin:10, marginTop:0, width:Constants.W*.4},
   img:{width:'100%', height: Constants.H*.15, resizeMode:'cover',justifyContent:'flex-end'},
   title:{color:'#fff', padding:10, fontSize:20, paddingTop:20 },
   wrapTitle:{borderBottomLeftRadius:12, borderBottomRightRadius:12}

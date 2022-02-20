@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, Pressable, StyleSheet, ImageBackground, ScrollView } from 'react-native'
+import { View, Image, Pressable, StyleSheet,  ScrollView } from 'react-native'
 import { MaterialCommunityIcons as Icon} from "@expo/vector-icons"
 import { Constants } from './../../constants'
 import { LinearGradient } from 'expo-linear-gradient'
@@ -13,12 +13,15 @@ export default function Tags({brands, action, onPress}) {
   return (
     <ScrollView showsHorizontalScrollIndicator={false}>
       {brands.map((item, key)=>(
-        <Pressable key={key} onPress={onPress} style={[styles.wrap,{borderColor:isDark?colors.border:'#ededed'}]}>
-          <ImageBackground style={styles.img} imageStyle={{ borderRadius: 12}} source={{uri:item.image}} >
-            <LinearGradient colors={colorsGru} style={styles.wrapTitle}>
+        <Pressable key={key} onPress={onPress} style={styles.wrap}>
+          <View style={styles.row}>
+            <Image source={{uri:item.logo}} style={styles.img} />
+            <View style={{paddingVertical:10}}>
               <TDText t={item.name} style={styles.title} bold/>
-            </LinearGradient>
-          </ImageBackground>
+              <TDText style={styles.tagsWarp} t={item.tags.map((e,k)=><TDText style={styles.tags} key={k} t={`${e.name}${(item.tags.length-1)!=k ? ',':''}`}/>)} />
+            </View>
+          </View>
+
         </Pressable>
       ))}
     </ScrollView>
@@ -26,10 +29,12 @@ export default function Tags({brands, action, onPress}) {
 }
 
 const styles = StyleSheet.create({
-  wrap:{borderRadius: 12, borderWidth:1, margin:10, marginTop:0, width:Constants.W*.4},
-  img:{width:'100%', height: Constants.H*.15, resizeMode:'cover',justifyContent:'flex-end'},
-  title:{color:'#fff', padding:10, fontSize:20, paddingTop:20 },
-  wrapTitle:{borderBottomLeftRadius:12, borderBottomRightRadius:12}
+  wrap:{backgroundColor: '#fff', borderRadius:12, margin:10, marginTop:0, width:Constants.W*.95},
+  img:{width:Constants.H*.1, height: Constants.H*.1, borderRadius: 12, resizeMode:'contain',alignSelf:'center', marginHorizontal:10},
+  title:{fontSize:20},
+  tags:{fontSize:16, color:'#999'},
+  tagsWarp:{maxWidth:Constants.W*.7,marginTop:-10, marginLeft:-2},
+  row:{flexDirection:'row', }
 })
 
 const colorsGru = ['rgba(0, 0, 0, 0.0)','rgba(0, 0, 0, 0.2)','rgba(0, 0, 0, 0.4))','rgba(0, 0, 0, 0.6))', 'rgba(0, 0, 0, 0.8))']

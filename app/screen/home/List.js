@@ -21,6 +21,7 @@ export default function List({ navigation }) {
   const handleBrands = () => setBrands(DATA.brands)
 
   const handleTags = () => {
+    console.log(brands);
     let tagArr = []
     brands.map(e=> {
       e.tags.map(tag=> {

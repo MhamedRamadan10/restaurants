@@ -18,7 +18,7 @@ export default function CustomScreen({children, loading, title, action, getNextP
       )}
 
       <ScrollView
-        onScroll={({nativeEvent}) => isCloseToBottom(nativeEvent) && getNextPage() }
+        onScroll={({nativeEvent}) => isCloseToBottom(nativeEvent) && getNextPage && getNextPage() }
         style={{backgroundColor:isDark?colors.background:'#fafafa', paddingVertical:10, minHeight:Constants.H}}>
         <StatusBar backgroundColor={isDark?colors.background:'#fafafa'} barStyle={isDark?'light-content':'dark-content'} />
 
