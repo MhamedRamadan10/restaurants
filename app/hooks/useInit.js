@@ -9,8 +9,7 @@ LogBox.ignoreAllLogs()
 export default useInit = (setIsDark) => {
 
   const init = async () => {
-    console.log(Appearance.getColorScheme());
-    setIsDark(Appearance.getColorScheme())
+    setIsDark(Appearance.getColorScheme()=='dark')
   }
 
   let [ fontsLoaded ] = useFonts({

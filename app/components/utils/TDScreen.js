@@ -5,7 +5,7 @@ import { useScroll, useIsDark } from './../../hooks'
 import TDHeader from './TDHeader'
 
 
-export default function TDScreen({children, loading, title, action, getNextPage, style}) {
+export default function CustomScreen({children, loading, title, action, getNextPage, style}) {
 
   const { isCloseToBottom } = useScroll()
   const { isDark, setIsDark, colors } = useIsDark()

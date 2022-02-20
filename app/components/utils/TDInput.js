@@ -6,6 +6,7 @@ export default function TDInput({value, numberOfLines=1, setValue, placeholder, 
 
   return (
     <View style={styles.wrapper}>
+      {icon && icon}
       <TextInput
         style={[styles.input,style]}
         value={value}
@@ -18,7 +19,7 @@ export default function TDInput({value, numberOfLines=1, setValue, placeholder, 
         numberOfLines={numberOfLines}
         multiline={numberOfLines>1}
       />
-      {icon && icon}
+
     </View>
 
   )
@@ -26,5 +27,5 @@ export default function TDInput({value, numberOfLines=1, setValue, placeholder, 
 
 const styles = StyleSheet.create({
   wrapper:{ backgroundColor:'#fff', padding:5, borderRadius:12, flexDirection:'row', width:'90%', alignSelf:'center',marginBottom:20},
-  input:{ fontSize:18, padding:10,color:Constants.colors.baseColor,fontFamily:'Tajawal-Medium'},
+  input:{ fontSize:18, padding:10, paddingVertical:4, color:Constants.colors.baseColor,fontFamily:'Tajawal-Medium'},
 })
