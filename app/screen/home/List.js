@@ -11,6 +11,7 @@ export default function List({ navigation }) {
   const [tags, setTags] = useState([])
   const [filter, setFilter] = useState('')
   const [filteredBrands, setFilteredBrands] = useState([])
+  const [selectTag, setSelectTag] = useState('')
 
   const { colors } = useIsDark()
   const { forceUpdate } = useForceUpdate()
@@ -46,11 +47,24 @@ export default function List({ navigation }) {
         icon={<Icon name='magnify' style={{color:'#999', fontSize:25, alignSelf:'center', marginLeft:5}} />}
       />
 
-      {tags.length > 0 && <Tags tags={tags}/> }
+      {tags.length > 0 && <Tags tags={tags} selectTag={selectTag} setSelectTag={setSelectTag}/> }
 
       <TDText t='Resturanst' bold style={{marginHorizontal:5, marginVertical:10}}/>
 
-      <Brands brands={brands.filter(i => i.name.toLowerCase().includes(filter.toLowerCase()))}/>
+      <Brands
+        brands={
+          brands.filter(i =>{
+            if (filter == '' && selectTag == '') return i
+            else if (filter != '' && selectTag == '')
+            return i.name.toLowerCase().includes(filter.toLowerCase())
+            else if (filter == '' && selectTag != '')
+            return i.tags.map(tag=> tag.name.toLowerCase()).includes(selectTag != '' && selectTag.name.toLowerCase())
+            else
+            return (i.name.toLowerCase().includes(filter.toLowerCase()) &&
+            i.tags.map(tag=> tag.name.toLowerCase()).includes(selectTag != '' && selectTag.name.toLowerCase())
+          )
+        })
+      }/>
 
     </TDScreen>
   )

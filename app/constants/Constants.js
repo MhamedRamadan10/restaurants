@@ -4,6 +4,6 @@ export default {
   H: Dimensions.get('window').height,
   W: Dimensions.get('window').width,
   colors:{
-    baseColor:'#000'
+    baseColor:'#e76f51'
   }
 };
