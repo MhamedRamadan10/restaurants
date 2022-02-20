@@ -10,6 +10,7 @@ export default function List({ navigation }) {
   const [brands, setBrands] = useState([])
   const [tags, setTags] = useState([])
   const [filter, setFilter] = useState('')
+  const [filteredBrands, setFilteredBrands] = useState([])
 
   const { colors } = useIsDark()
   const { forceUpdate } = useForceUpdate()
@@ -33,6 +34,7 @@ export default function List({ navigation }) {
     forceUpdate()
   }
 
+
   return (
     <TDScreen >
 
@@ -48,7 +50,7 @@ export default function List({ navigation }) {
 
       <TDText t='Resturanst' bold style={{marginHorizontal:5, marginVertical:10}}/>
 
-      <Brands brands={brands}/>
+      <Brands brands={brands.filter(i => i.name.toLowerCase().includes(filter.toLowerCase()))}/>
 
     </TDScreen>
   )
