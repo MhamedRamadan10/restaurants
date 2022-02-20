@@ -1,15 +1,16 @@
 import React , { useEffect } from "react"
-import { LogBox } from 'react-native'
+import { LogBox, Appearance } from 'react-native'
 import { useFonts } from 'expo-font';
 import 'react-native-gesture-handler'
 
 LogBox.ignoreAllLogs()
 
 
-export default useInit = () => {
+export default useInit = (setIsDark) => {
 
   const init = async () => {
-    console.log('init app')
+    console.log(Appearance.getColorScheme());
+    setIsDark(Appearance.getColorScheme())
   }
 
   let [ fontsLoaded ] = useFonts({

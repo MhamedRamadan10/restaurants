@@ -6,9 +6,9 @@ export default function List({ navigation }) {
 
 
   return (
-    <TDScreen action={false}>
+    <TDScreen >
 
-      <TDText t='Home' />
+      <TDText t='Home' center bold/>
 
     </TDScreen>
   )
