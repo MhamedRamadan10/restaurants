@@ -50,7 +50,10 @@ export default function List({ navigation }) {
         items:[],
         description:''
       }
-      console.log(obj);
+      let newBrands = brands
+      newBrands.push(obj)
+      setBrands(newBrands)
+      clearState()
     }
   }
 
@@ -58,6 +61,13 @@ export default function List({ navigation }) {
     if (!name.trim()) return Toast.show('Please, Enter name')
     else if (addTags.length == 0) return Toast.show('Please, pick at least one tag')
     else return true
+  }
+
+  const clearState = () => {
+    setName('')
+    setAddTage([])
+    setIsOpen(!isOpen)
+    setIsAdding(!isAdding)
   }
 
 
