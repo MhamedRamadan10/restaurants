@@ -15,7 +15,7 @@ export default function Tags({brands, navigation}) {
       {brands.map((item, key)=>(
         <Pressable key={key} onPress={()=>navigation.navigate('Single',{item})} style={[styles.wrap,{backgroundColor: colors.card,}]}>
           <View style={styles.row}>
-            <Image source={{uri:item.logo}} style={styles.img} />
+            <Image source={{uri:item.logo != ''?item.logo:'https://www.shareicon.net/data/512x512/2016/08/04/806801_pin_512x512.png'}} style={styles.img} />
             <View style={{paddingVertical:10}}>
               <TDText t={item.name} style={styles.title} bold/>
               <TDText style={styles.tagsWarp} t={item.tags.map((e,k)=><TDText style={styles.tags} key={k} t={`${e.name}${(item.tags.length-1)!=k ? ',':''}`}/>)} />
