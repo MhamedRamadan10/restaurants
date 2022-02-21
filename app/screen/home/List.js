@@ -1,24 +1,22 @@
 import { useEffect, useState } from 'react'
 import { View, ActivityIndicator } from 'react-native'
-import { TDScreen, TDText, TDInput, Tags, Brands, Popup } from './../../components'
-import { useScroll, useIsDark, useForceUpdate } from './../../hooks'
+import { TDScreen, TDText, TDInput, Tags, Brands, Popup, AddBrand } from './../../components'
+import { useForceUpdate } from './../../hooks'
 import { MaterialCommunityIcons as Icon} from "@expo/vector-icons"
-import DATA from './../../constants/data.json'
 import { FloatingAction } from "react-native-floating-action"
 import { Constants } from './../../constants'
+import DATA from './../../constants/data.json'
 
 export default function List({ navigation }) {
 
   const [brands, setBrands] = useState([])
   const [tags, setTags] = useState([])
   const [filter, setFilter] = useState('')
-  const [filteredBrands, setFilteredBrands] = useState([])
   const [selectTag, setSelectTag] = useState('')
   const [isAdding, setIsAdding] = useState(false)
   const [isOpen, setIsOpen] = useState(true)
 
   const { forceUpdate } = useForceUpdate()
-
 
   useEffect(()=> handleBrands(),[])
   useEffect(()=> handleTags(),[brands])
@@ -38,17 +36,15 @@ export default function List({ navigation }) {
     forceUpdate()
   }
 
-
   return (
     <>
-
 
     <TDScreen >
 
       <TDInput
         value={filter}
         setValue={setFilter}
-        placeholder='Search for..'
+        placeholder='What would you like to eat ..'
         style={{width:'90%'}}
         icon={<Icon name='magnify' style={{color:'#999', fontSize:25, alignSelf:'center', marginLeft:5}} />}
       />
@@ -88,7 +84,7 @@ export default function List({ navigation }) {
     <Popup
       show={isAdding}
       setShow={setIsAdding}
-      content={<TDText t='Resturanst' bold style={{marginHorizontal:5, marginVertical:10}}/>}
+      content={<AddBrand />}
       onSubmit={()=>console.log('sj')}
       onCancel={()=>{setIsOpen(!isOpen),setIsAdding(!isAdding)}}
     />

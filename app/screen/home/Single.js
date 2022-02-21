@@ -1,15 +1,18 @@
-import { useEffect, useState, useCallback } from 'react'
+import { useEffect, useState } from 'react'
 import { View, ScrollView, StyleSheet, StatusBar, ImageBackground } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Constants } from './../../constants'
-import { TDText, Item } from './../../components'
+import { TDText, Item, Popup, Branches } from './../../components'
 import { MaterialCommunityIcons as Icon} from "@expo/vector-icons"
 import useIsDark from './../../hooks/useIsDark'
+import { FloatingAction } from "react-native-floating-action"
 
 
 export default function Single({ route, navigation }) {
 
   const [item, setitem] = useState([])
+  const [isOpen, setIsOpen] = useState(true)
+  const [isShowBranches, setIsShowBranches] = useState(false)
 
   const { isDark, setIsDark, colors } = useIsDark()
 
@@ -35,13 +38,31 @@ export default function Single({ route, navigation }) {
         </View>
 
       </ScrollView>
+
+      <FloatingAction
+        visible={isOpen}
+        distanceToEdge={{vertical: 20, horizontal: 10}}
+        showBackground={false}
+        color={Constants.colors.baseColor}
+        onPressMain={()=> {setIsOpen(!isOpen),setIsShowBranches(!isShowBranches)}}
+        floatingIcon={<Icon name='map-marker-radius-outline' style={{fontSize:30, color:'#fff'}}/>}
+      />
+
+      <Popup
+        show={isShowBranches}
+        setShow={setIsShowBranches}
+        content={<Branches branches={item.branches}/>}
+        onSubmit={()=>console.log('sj')}
+        noSubmit
+        onCancel={()=>{setIsOpen(!isOpen),setIsShowBranches(!isShowBranches)}}
+      />
     </LinearGradient>
   )
 }
 
 const styles = StyleSheet.create({
   img:{width:'100%', height: Constants.H*.4, resizeMode:'cover',justifyContent:'space-between'},
-  section:{borderTopRightRadius:35,borderTopLeftRadius:35, marginTop:-30, minHeight:Constants.H*.8},
+  section:{borderTopRightRadius:35,borderTopLeftRadius:35, marginTop:-30, minHeight:Constants.H*.7},
   title:{color:'#fff', paddingHorizontal:10,  paddingTop:20},
   tags:{fontSize:16, color:'#fff',paddingBottom:45, paddingHorizontal:10, marginTop:-5},
   desc:{padding:15},
