@@ -6,6 +6,7 @@ import { MaterialCommunityIcons as Icon} from "@expo/vector-icons"
 import { FloatingAction } from "react-native-floating-action"
 import { Constants } from './../../constants'
 import DATA from './../../constants/data.json'
+import Toast from 'react-native-simple-toast'
 
 export default function List({ navigation }) {
 
@@ -15,6 +16,8 @@ export default function List({ navigation }) {
   const [selectTag, setSelectTag] = useState('')
   const [isAdding, setIsAdding] = useState(false)
   const [isOpen, setIsOpen] = useState(true)
+  const [name, setName] = useState('')
+  const [addTags, setAddTage] = useState([])
 
   const { forceUpdate } = useForceUpdate()
 
@@ -36,6 +39,28 @@ export default function List({ navigation }) {
     forceUpdate()
   }
 
+  const add = () => {
+    if (!valid()) return
+    else {
+      let obj = {
+        name,
+        tags:addTags,
+        logo:'',
+        branches:[],
+        items:[],
+        description:''
+      }
+      console.log(obj);
+    }
+  }
+
+  const valid = () => {
+    if (!name.trim()) return Toast.show('Please, Enter name')
+    else if (addTags.length == 0) return Toast.show('Please, pick at least one tag')
+    else return true
+  }
+
+
   return (
     <>
 
@@ -51,7 +76,7 @@ export default function List({ navigation }) {
 
       {tags.length > 0 && <Tags tags={tags} selectTag={selectTag} setSelectTag={setSelectTag}/> }
 
-      <TDText t='Resturanst' bold style={{marginHorizontal:5, marginVertical:10}}/>
+      <TDText t='Restaurants' bold style={{marginHorizontal:5, marginVertical:10}}/>
 
       <Brands
         brands={
@@ -84,8 +109,8 @@ export default function List({ navigation }) {
     <Popup
       show={isAdding}
       setShow={setIsAdding}
-      content={<AddBrand />}
-      onSubmit={()=>console.log('sj')}
+      content={<AddBrand add={add} name={name} setName={setName} addTags={addTags} setAddTage={setAddTage} tags={tags.map((e,k)=> ({...e, name:e.name, id:k}) )} />}
+      onSubmit={()=>add()}
       onCancel={()=>{setIsOpen(!isOpen),setIsAdding(!isAdding)}}
     />
 

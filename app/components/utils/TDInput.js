@@ -6,7 +6,7 @@ import useIsDark from './../../hooks/useIsDark'
 export default function TDInput({value, numberOfLines=1, setValue, placeholder, icon=false, autoFocus=false, keyboardType='default', editable=true, isPassword, style}) {
 
   const { isDark, setIsDark, colors } = useIsDark()
-  console.log(colors);
+
   return (
     <View style={[styles.wrapper,{backgroundColor:isDark?colors.border:'#fff'}]}>
       {icon && icon}
