@@ -49,10 +49,10 @@ export default function AddBrand({branches, tags, add, name, setName, addTags, s
           searchInputStyle={{ color: '#CCC' }}
           submitButtonColor="#CCC"
           submitButtonText="Submit"
-          styleDropdownMenuSubsection={{borderRadius:12, width:'90%'}}
+          styleDropdownMenuSubsection={{borderRadius:12, width:'90%', backgroundColor:colors.background}}
           styleMainWrapper={{ width:'96%', alignSelf:'center'}}
           styleDropdownMenu={{ height:50}}
-          styleTextDropdown={{paddingLeft:10}}
+          styleTextDropdown={{paddingLeft:10, color:colors.text}}
         />
         {addTags.length>0 && (
           <ScrollView horizontal>

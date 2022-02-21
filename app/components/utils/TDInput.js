@@ -8,14 +8,14 @@ export default function TDInput({value, numberOfLines=1, setValue, placeholder, 
   const { isDark, setIsDark, colors } = useIsDark()
 
   return (
-    <View style={[styles.wrapper,{backgroundColor:isDark?colors.border:'#fff'}]}>
+    <View style={[styles.wrapper,{backgroundColor:isDark?colors.card:'#fff'}]}>
       {icon && icon}
       <TextInput
-        style={[styles.input,{backgroundColor:isDark?colors.border:'#fff', color:colors.text},style]}
+        style={[styles.input,{backgroundColor:isDark?colors.card:'#fff', color:colors.text},style]}
         value={value}
         onChangeText={setValue}
         placeholder={placeholder}
-        placeholderTextColor={colors.border}
+        placeholderTextColor={colors.text}
         keyboardType={keyboardType}
         autoFocus={autoFocus}
         editable={editable}
