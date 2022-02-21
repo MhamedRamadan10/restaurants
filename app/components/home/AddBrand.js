@@ -54,12 +54,14 @@ export default function AddBrand({branches, tags, add, name, setName, addTags, s
           styleDropdownMenu={{ height:50}}
           styleTextDropdown={{paddingLeft:10, color:colors.text}}
         />
-        {addTags.length>0 && (
+        {addTags.length>0 ? (
           <ScrollView horizontal>
             {addTags.map((e,k)=>(
               <TDText t={e.name} key={k} style={[styles.tag, {borderColor:colors.border}]}/>
             ))}
           </ScrollView>
+        ):(
+          <TDText t='Ex: Pizza, Fast Food, etc..' style={{color:colors.text, paddingHorizontal:10}}/>
         )}
     </View>
   )

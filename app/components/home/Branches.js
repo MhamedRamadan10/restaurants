@@ -10,7 +10,7 @@ export default function Branches({branches}) {
   const { isDark, setIsDark, colors } = useIsDark()
 
   return (
-    branches.map((e,k)=>(
+    branches.length > 0 ? branches.map((e,k)=>(
       <Pressable key={k} style={[styles.wrap,{backgroundColor: colors.card,}]}>
         <View style={styles.row}>
           <Image source={{uri:'https://www.shareicon.net/data/256x256/2016/08/24/819514_gps_512x512.png'}} style={styles.img} />
@@ -20,6 +20,8 @@ export default function Branches({branches}) {
         </View>
       </Pressable>
     ))
+    :
+    <TDText t='no branches found' center style={styles.title}/>
   )
 }
 

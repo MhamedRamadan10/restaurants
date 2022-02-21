@@ -22,7 +22,7 @@ export default function Single({ route, navigation }) {
     <LinearGradient colors={isDark?[colors.background, colors.card]:['#ededed', '#fff']} >
       <StatusBar translucent={true} backgroundColor={'transparent'} />
       <ScrollView >
-        <ImageBackground style={styles.img} source={{uri:item.logo}}  >
+        <ImageBackground style={styles.img} source={{uri:item.logo!=''?item.logo:'https://www.pngkit.com/png/full/2-24962_food-png-image-with-transparent-background-indian-restaurant.png'}}  >
           <Icon name='arrow-left' style={styles.back} onPress={()=>navigation.goBack()}/>
           <LinearGradient colors={colorsGradient} style={styles.wrapTitle}>
             <TDText t={item.name} style={styles.title} bold/>
@@ -33,8 +33,13 @@ export default function Single({ route, navigation }) {
         </ImageBackground>
 
         <View style={[styles.section,{backgroundColor:colors.background}]}>
-          <TDText t={item.description} style={styles.desc}/>
-          {item.items && item.items.map((e, k)=> <Item item={e} key={k}/> )}
+
+          <TDText t={item.description!=''} style={styles.desc}/>
+
+          {item.items && item.items.length > 0 ?
+            item.items.map((e, k)=> <Item item={e} key={k}/> ):
+            <TDText t='😕 no items found' center style={styles.desc}/>
+          }
         </View>
 
       </ScrollView>
