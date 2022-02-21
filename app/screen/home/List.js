@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
 import { View, ActivityIndicator } from 'react-native'
-import { TDScreen, TDText, TDInput, Tags, Brands } from './../../components'
+import { TDScreen, TDText, TDInput, Tags, Brands, Popup } from './../../components'
 import { useScroll, useIsDark, useForceUpdate } from './../../hooks'
 import { MaterialCommunityIcons as Icon} from "@expo/vector-icons"
 import DATA from './../../constants/data.json'
+import { FloatingAction } from "react-native-floating-action"
+import { Constants } from './../../constants'
 
 export default function List({ navigation }) {
 
@@ -12,6 +14,8 @@ export default function List({ navigation }) {
   const [filter, setFilter] = useState('')
   const [filteredBrands, setFilteredBrands] = useState([])
   const [selectTag, setSelectTag] = useState('')
+  const [isAdding, setIsAdding] = useState(false)
+  const [isOpen, setIsOpen] = useState(true)
 
   const { forceUpdate } = useForceUpdate()
 
@@ -36,6 +40,9 @@ export default function List({ navigation }) {
 
 
   return (
+    <>
+
+
     <TDScreen >
 
       <TDInput
@@ -67,6 +74,25 @@ export default function List({ navigation }) {
         navigation={navigation}
       />
 
-      </TDScreen>
-  )
+    </TDScreen>
+
+    <FloatingAction
+      visible={isOpen}
+      distanceToEdge={{vertical: 20, horizontal: 10}}
+      showBackground={false}
+      color={Constants.colors.baseColor}
+      onPressMain={()=> {setIsOpen(!isOpen),setIsAdding(!isAdding)}}
+      floatingIcon={<Icon name='plus' style={{fontSize:30, color:'#fff'}}/>}
+    />
+
+    <Popup
+      show={isAdding}
+      setShow={setIsAdding}
+      content={<TDText t='Resturanst' bold style={{marginHorizontal:5, marginVertical:10}}/>}
+      onSubmit={()=>console.log('sj')}
+      onCancel={()=>{setIsOpen(!isOpen),setIsAdding(!isAdding)}}
+    />
+
+  </>
+)
 }

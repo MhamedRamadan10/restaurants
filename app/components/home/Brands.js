@@ -13,7 +13,7 @@ export default function Tags({brands, navigation}) {
   return (
     <ScrollView showsHorizontalScrollIndicator={false}>
       {brands.map((item, key)=>(
-        <Pressable key={key} onPress={()=>navigation.navigate('Single',{item})} style={styles.wrap}>
+        <Pressable key={key} onPress={()=>navigation.navigate('Single',{item})} style={[styles.wrap,{backgroundColor: colors.card,}]}>
           <View style={styles.row}>
             <Image source={{uri:item.logo}} style={styles.img} />
             <View style={{paddingVertical:10}}>
@@ -23,12 +23,13 @@ export default function Tags({brands, navigation}) {
           </View>
         </Pressable>
       ))}
+      {brands.length == 0 && <TDText t='😕 No data' center style={{marginHorizontal:5, marginVertical:Constants.H*.15}}/> }
     </ScrollView>
   )
 }
 
 const styles = StyleSheet.create({
-  wrap:{backgroundColor: '#fff', borderRadius:12, margin:10, marginTop:0, width:Constants.W*.95},
+  wrap:{ borderRadius:12, margin:10, marginTop:0, width:Constants.W*.95},
   img:{width:Constants.H*.1, height: Constants.H*.1, borderRadius: 12, resizeMode:'contain',alignSelf:'center', marginHorizontal:10},
   title:{fontSize:20},
   tags:{fontSize:16, color:'#999'},

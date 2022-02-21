@@ -17,7 +17,7 @@ export default function Tags({tags, selectTag, setSelectTag }) {
   return (
     <ScrollView horizontal showsHorizontalScrollIndicator={false}>
       {tags.map((item, key)=>(
-        <Pressable key={key} onPress={()=>select(item)} style={[styles.wrap,{borderColor:selectTag.name == item.name?Constants.colors.baseColor:'#fafafa'}]}>
+        <Pressable key={key} onPress={()=>select(item)} style={[styles.wrap,{borderColor:selectTag.name == item.name?Constants.colors.baseColor:colors.background}]}>
           <ImageBackground style={styles.img} imageStyle={{ borderRadius: 12}} source={{uri:item.image}} >
             <LinearGradient colors={colorsGru} style={styles.wrapTitle}>
               <TDText t={item.name} style={styles.title} bold/>

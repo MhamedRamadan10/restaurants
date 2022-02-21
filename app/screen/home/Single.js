@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useCallback } from 'react'
-import { View, Text, ScrollView, StyleSheet, StatusBar, ImageBackground } from 'react-native'
+import { useEffect, useState, useCallback } from 'react'
+import { View, ScrollView, StyleSheet, StatusBar, ImageBackground } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient'
 import { Constants } from './../../constants'
 import { TDText, Item } from './../../components'
@@ -10,7 +10,6 @@ import useIsDark from './../../hooks/useIsDark'
 export default function Single({ route, navigation }) {
 
   const [item, setitem] = useState([])
-  console.log(item);
 
   const { isDark, setIsDark, colors } = useIsDark()
 

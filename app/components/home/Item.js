@@ -3,11 +3,14 @@ import { View, Pressable, StyleSheet, Image, ScrollView } from 'react-native'
 import { MaterialCommunityIcons as Icon} from "@expo/vector-icons"
 import { Constants } from './../../constants'
 import { TDText } from './../../components'
+import useIsDark from './../../hooks/useIsDark'
 
 export default function Item({item}) {
 
+  const { isDark, setIsDark, colors } = useIsDark()
+
   return (
-    <Pressable style={styles.wrap}>
+    <Pressable style={[styles.wrap,{backgroundColor: colors.card,}]}>
       <View style={styles.row}>
 
         <Image source={{uri:'https://assets.materialup.com/uploads/b03b23aa-aa69-4657-aa5e-fa5fef2c76e8/preview.png'}} style={styles.img} />
