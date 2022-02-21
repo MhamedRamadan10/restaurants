@@ -13,7 +13,6 @@ export default function List({ navigation }) {
   const [filteredBrands, setFilteredBrands] = useState([])
   const [selectTag, setSelectTag] = useState('')
 
-  const { colors } = useIsDark()
   const { forceUpdate } = useForceUpdate()
 
 
@@ -23,8 +22,8 @@ export default function List({ navigation }) {
   const handleBrands = () => setBrands(DATA.brands)
 
   const handleTags = () => {
-    console.log(brands);
     let tagArr = []
+    console.log(brands);
     brands.map(e=> {
       e.tags.map(tag=> {
         tagArr = tags
@@ -59,13 +58,15 @@ export default function List({ navigation }) {
             return i.name.toLowerCase().includes(filter.toLowerCase())
             else if (filter == '' && selectTag != '')
             return i.tags.map(tag=> tag.name.toLowerCase()).includes(selectTag != '' && selectTag.name.toLowerCase())
-            else
-            return (i.name.toLowerCase().includes(filter.toLowerCase()) &&
-            i.tags.map(tag=> tag.name.toLowerCase()).includes(selectTag != '' && selectTag.name.toLowerCase())
-          )
-        })
-      }/>
+            else return (
+              i.name.toLowerCase().includes(filter.toLowerCase()) &&
+              i.tags.map(tag=> tag.name.toLowerCase()).includes(selectTag != '' && selectTag.name.toLowerCase())
+            )
+          })
+        }
+        navigation={navigation}
+      />
 
-    </TDScreen>
+      </TDScreen>
   )
 }

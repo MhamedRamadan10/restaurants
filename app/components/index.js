@@ -6,3 +6,4 @@ export { default as TDHeader } from './utils/TDHeader'
 
 export { default as Tags } from './home/Tags'
 export { default as Brands } from './home/Brands'
+export { default as Item } from './home/Item'

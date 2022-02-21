@@ -6,14 +6,14 @@ import { LinearGradient } from 'expo-linear-gradient'
 import { TDText } from './../../components'
 import useIsDark from './../../hooks/useIsDark'
 
-export default function Tags({brands, action, onPress}) {
+export default function Tags({brands, navigation}) {
 
   const { isDark, setIsDark, colors } = useIsDark()
 
   return (
     <ScrollView showsHorizontalScrollIndicator={false}>
       {brands.map((item, key)=>(
-        <Pressable key={key} onPress={onPress} style={styles.wrap}>
+        <Pressable key={key} onPress={()=>navigation.navigate('Single',{item})} style={styles.wrap}>
           <View style={styles.row}>
             <Image source={{uri:item.logo}} style={styles.img} />
             <View style={{paddingVertical:10}}>
@@ -21,7 +21,6 @@ export default function Tags({brands, action, onPress}) {
               <TDText style={styles.tagsWarp} t={item.tags.map((e,k)=><TDText style={styles.tags} key={k} t={`${e.name}${(item.tags.length-1)!=k ? ',':''}`}/>)} />
             </View>
           </View>
-
         </Pressable>
       ))}
     </ScrollView>

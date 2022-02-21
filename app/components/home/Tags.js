@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { Text, Pressable, StyleSheet, ImageBackground, ScrollView } from 'react-native'
-import { MaterialCommunityIcons as Icon} from "@expo/vector-icons"
 import { Constants } from './../../constants'
 import { LinearGradient } from 'expo-linear-gradient'
 import { TDText } from './../../components'
@@ -9,7 +8,6 @@ import useIsDark from './../../hooks/useIsDark'
 export default function Tags({tags, selectTag, setSelectTag }) {
 
   const { colors } = useIsDark()
-
 
   const select = (item) => {
     if (item == selectTag) setSelectTag('')
